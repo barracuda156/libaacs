@@ -463,12 +463,6 @@ void device_close(MMCDEV **pp)
             IODestroyPlugInInterface(mmc->plugInInterface);
         }
 
-        if (!mmc->sync_sem) {
-            /* open failed before iokit_da_init() */
-            X_FREE(*pp);
-            return;
-        }
-
         (void) iokit_mount (mmc);
 
         iokit_da_destroy(mmc);
